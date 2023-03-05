@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "../include/polinom.h"
-#include "../src/polinom.cpp"
 
 int main()
 {

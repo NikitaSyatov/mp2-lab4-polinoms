@@ -2,7 +2,7 @@
 #include "../include/polinom.h"
 #include <iostream>
 
-Node::Node(double factor = 1, size_t pow = 0, Node* pNext = nullptr)
+Node::Node(double factor, size_t pow, Node* pNext = nullptr)
 {
     this->factor = factor;
     this->pow = pow;
