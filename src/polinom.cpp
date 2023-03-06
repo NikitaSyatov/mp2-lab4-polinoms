@@ -1,4 +1,5 @@
 //release function, class
+#pragma once
 #include "../include/polinom.h"
 #include <iostream>
 

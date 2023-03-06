@@ -1,7 +1,6 @@
 //test for Polinom and List
 #include "../gtest/gtest.h"
 #include "../include/polinom.h"
-#include "../src/polinom.cpp"
 
 TEST(class_List, can_make_List)
 {
