@@ -61,7 +61,6 @@ void List::Sort()
 
 void List::push_back(double factor, size_t pow)
 {
-    bool id = false;
     if (Head == nullptr)
     {
         Head = new Node(factor, pow);
@@ -81,16 +80,30 @@ void List::push_back(double factor, size_t pow)
 
 List::~List()
 {
-    Node* del = Head;
-    while (del != nullptr)
+    while (Head != nullptr)
     {
-        Node* tmp_ptr = del->pNext;
-        del = tmp_ptr;
+        Node* tmp_ptr = Head->pNext;
+        delete Head;
+        Head = tmp_ptr;
     }
     Head = nullptr;
 }
 
 Polinoms::Polinoms() : List() {}
+
+Polinoms::Polinoms(const Polinoms& pln) : List()
+{
+    if (this != &pln)
+    {
+        this->clear();
+        Node* tmp = pln.Head;
+        while (tmp != nullptr)
+        {
+            this->push_back(tmp->factor, tmp->pow);
+            tmp = tmp->pNext;
+        }
+    }
+}
 
 Polinoms::Polinoms(const std::string& pol) : List()
 {
@@ -207,12 +220,13 @@ bool Polinoms::operator!=(const Polinoms& pln)
 
 const Polinoms& Polinoms::operator=(const Polinoms& pln)
 {
-    if (*this != pln)
+    if (this != &pln)
     {
         this->clear();
         Node* tmp = pln.Head;
         while (tmp != nullptr)
         {
+            //std::cout << 1;
             this->push_back(tmp->factor, tmp->pow);
             tmp = tmp->pNext;
         }

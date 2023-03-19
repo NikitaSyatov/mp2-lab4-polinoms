@@ -34,6 +34,8 @@ private:
 public:
     Polinoms();
 
+    Polinoms(const Polinoms& pln);
+
     Polinoms(const std::string& pol);
 
     bool operator==(const Polinoms& pln);

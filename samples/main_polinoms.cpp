@@ -9,7 +9,7 @@ int main()
 	std::string polinom_right;
 	std::cout << "             PROGRAMM FOR OPERATION WITH POLINOMS             " << std::endl;
 	std::cout << "--------------------------------------------------------------" << std::endl;
-	std::cout << "RULES FOR ENTERING YOUR POLINOM:\n1) Dont use space\n2) Entering variables in xyz order\n3) Dnt entering null monom" << std::endl;
+	std::cout << "RULES FOR ENTERING YOUR POLINOM:\n1) Dont use space and use only ',')\n2) Entering variables in xyz order\n3) Dnt entering null monom" << std::endl;
 	std::cout << "Enter your polinoms:" << std::endl;
 	std::cin >> polinom;
 	std::cout << "Enter your second polinoms:" << std::endl;
@@ -19,16 +19,18 @@ int main()
 	try
 	{
 		Polinoms userPolinom1(polinom);
-		Polinoms userPolinom2(polinom);
+		Polinoms userPolinom2(polinom_right);
 		switch (chooseOperation)
 		{
 		case(1):
 		{
 			std::cout << userPolinom1 << "+" << userPolinom2 << "=\n" << userPolinom1 + userPolinom2 << std::endl;
+			break;
 		}
 		case(2):
 		{
 			std::cout << userPolinom1 << "-" << userPolinom2 << "=\n" << userPolinom1 - userPolinom2 << std::endl;
+			break;
 		}
 		case(3):
 		{
@@ -36,10 +38,12 @@ int main()
 			std::cout << "enter a number:" << std::endl;
 			std::cin >> alpha;
 			std::cout << userPolinom1 << "*" << alpha << "=\n" << userPolinom1 * alpha << std::endl;
+			break;
 		}
 		case(4):
 		{
 			std::cout << userPolinom1 << "*" << userPolinom2 << "=\n" << userPolinom1 * userPolinom2 << std::endl;
+			break;
 		}
 		default:
 		{

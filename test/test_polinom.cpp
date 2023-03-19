@@ -70,7 +70,11 @@ TEST(class_Polinoms, can_copy_polinoms)
 {
 	Polinoms a("34x^2+5x^3y^4");
 	Polinoms b = a;
-	EXPECT_TRUE(Polinoms("34x^2+5x^3y^4") == b);
+	Polinoms c("34x^2+5x^3y^4");
+	EXPECT_TRUE(c == b);
+
+	Polinoms d(a);
+	EXPECT_TRUE(a == d);
 }
 
 TEST(class_Polinoms, multiply_with_number_not_null)
