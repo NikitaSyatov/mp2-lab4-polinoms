@@ -24,12 +24,20 @@ int main()
 		{
 		case(1):
 		{
-			std::cout << userPolinom1 << "+" << userPolinom2 << "=\n" << userPolinom1 + userPolinom2 << std::endl;
+			userPolinom1.show();
+			std::cout << "+";
+			userPolinom2.show();
+			std::cout << "=\n";
+			(userPolinom1 + userPolinom2).show();
 			break;
 		}
 		case(2):
 		{
-			std::cout << userPolinom1 << "-" << userPolinom2 << "=\n" << userPolinom1 - userPolinom2 << std::endl;
+			userPolinom1.show();
+			std::cout << "-";
+			userPolinom2.show();
+			std::cout << "=\n";
+			(userPolinom1 - userPolinom2).show();
 			break;
 		}
 		case(3):
@@ -37,12 +45,19 @@ int main()
 			double alpha;
 			std::cout << "enter a number:" << std::endl;
 			std::cin >> alpha;
-			std::cout << userPolinom1 << "*" << alpha << "=\n" << userPolinom1 * alpha << std::endl;
+			userPolinom1.show();
+			std::cout << "*" << alpha;
+			std::cout << "=\n";
+			(userPolinom1 * alpha).show();
 			break;
 		}
 		case(4):
 		{
-			std::cout << userPolinom1 << "*" << userPolinom2 << "=\n" << userPolinom1 * userPolinom2 << std::endl;
+			userPolinom1.show();
+			std::cout << "*";
+			userPolinom2.show();
+			std::cout << "=\n";
+			(userPolinom1 * userPolinom2).show();
 			break;
 		}
 		default:
