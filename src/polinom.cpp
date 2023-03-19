@@ -94,9 +94,8 @@ Polinoms::Polinoms() : List() {}
 
 Polinoms::Polinoms(const Polinoms& pln) : List()
 {
-    if (this != &pln)
+    if (pln.Head != nullptr)
     {
-        this->clear();
         Node* tmp = pln.Head;
         while (tmp != nullptr)
         {
