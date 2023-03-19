@@ -52,9 +52,9 @@ public:
 
     Polinoms operator*(const Polinoms& pln);
 
-    virtual ~Polinoms();
+    ~Polinoms();
 
-    friend std::ostream& operator<<(std::ostream& ostr, Polinoms pln);
+    void show();
 };
 
 double convert(std::string num);

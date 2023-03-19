@@ -2,6 +2,7 @@
 #pragma once
 #include "../include/polinom.h"
 #include <iostream>
+#define EPSILON 0.1e-10
 
 Node::Node(double factor, size_t pow, Node* pNext = nullptr)
 {
@@ -226,7 +227,6 @@ const Polinoms& Polinoms::operator=(const Polinoms& pln)
         Node* tmp = pln.Head;
         while (tmp != nullptr)
         {
-            //std::cout << 1;
             this->push_back(tmp->factor, tmp->pow);
             tmp = tmp->pNext;
         }
@@ -240,7 +240,7 @@ Polinoms Polinoms::operator*(const double alpha)
     bool checkNULL = false;
     for (Node* i = Head; i != nullptr; i = i->pNext)
     {
-        if ((i->factor * alpha) != 0)
+        if (std::abs(i->factor * alpha) > EPSILON)
         {
             checkNULL = true;
             res.push_back(i->factor * alpha, i->pow);
@@ -267,7 +267,7 @@ Polinoms Polinoms::operator+(const Polinoms& pln)
         }
         else if (pln_ptr->pow == i->pow)
         {
-            if (i->factor + pln_ptr->factor != 0)
+            if (std::abs(i->factor + pln_ptr->factor) > EPSILON)
                 res.push_back(i->factor + pln_ptr->factor, i->pow);
             pln_ptr = pln_ptr->pNext;
             i = i->pNext;
@@ -322,21 +322,20 @@ Polinoms Polinoms::operator*(const Polinoms& pln)
 
 Polinoms::~Polinoms() {}
 
-std::ostream& operator<<(std::ostream& ostr, Polinoms pln)
+void Polinoms::show()
 {
-    for (Node* i = pln.GetHead(); i != nullptr; i = i->pNext)
+    for (Node* i = Head; i != nullptr; i = i->pNext)
     {
-        ostr << i->factor;
+        std::cout << i->factor;
         if (int(i->pow / 100) != 0)
-            ostr << "x^" << int(i->pow / 100);
+            std::cout << "x^" << int(i->pow / 100);
         if ((int(i->pow % 100) / 10) != 0)
-            ostr << "y^" << int((i->pow % 100) / 10);
+            std::cout << "y^" << int((i->pow % 100) / 10);
         if ((i->pow % 10) != 0)
-            ostr << "z^" << (i->pow % 10);
+            std::cout << "z^" << (i->pow % 10);
         if (i->pNext != nullptr && i->pNext->factor > 0)
-            ostr << "+";
+            std::cout << "+";
     }
-    return ostr;
 }
 
 double convert(std::string num)
@@ -355,7 +354,7 @@ double convert(std::string num)
     int power = 1;
     for (; num[i] != ',' && i < num.size(); i++)     //integer part
     {
-        if (int(num[i]) >= 48 && int(num[i]) <= 57)
+        if (num[i] >= '0' && int(num[i]) <= '9')
         {
             result *= power;
             result += (double(num[i]) - 48);

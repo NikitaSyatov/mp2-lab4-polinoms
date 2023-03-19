@@ -9,7 +9,7 @@ int main()
 	std::string polinom_right;
 	std::cout << "             PROGRAMM FOR OPERATION WITH POLINOMS             " << std::endl;
 	std::cout << "--------------------------------------------------------------" << std::endl;
-	std::cout << "RULES FOR ENTERING YOUR POLINOM:\n1) Dont use space and use only ',')\n2) Entering variables in xyz order\n3) Dnt entering null monom" << std::endl;
+	std::cout << "RULES FOR ENTERING YOUR POLINOM:\n1) Dont use space and use only ',')\n2) Entering variables in xyz order\n3) Dont entering null monom" << std::endl;
 	std::cout << "Enter your polinoms:" << std::endl;
 	std::cin >> polinom;
 	std::cout << "Enter your second polinoms:" << std::endl;
