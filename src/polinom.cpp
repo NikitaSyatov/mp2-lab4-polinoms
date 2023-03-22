@@ -235,19 +235,14 @@ const Polinoms& Polinoms::operator=(const Polinoms& pln)
 
 Polinoms Polinoms::operator*(const double alpha)
 {
+    if (alpha == 0)
+        return Polinoms("0");
+
     Polinoms res;
-    bool checkNULL = false;
     for (Node* i = Head; i != nullptr; i = i->pNext)
     {
-        if (std::abs(i->factor * alpha) > EPSILON)
-        {
-            checkNULL = true;
             res.push_back(i->factor * alpha, i->pow);
-        }
     }
-
-    if (!checkNULL)
-        return Polinoms("0");
 
     return res;
 }
