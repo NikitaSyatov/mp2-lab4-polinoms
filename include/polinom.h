@@ -25,6 +25,8 @@ public:
 
     void Sort();
 
+    void delete_after_nd(Node* nd);
+
     ~List();
 };
 

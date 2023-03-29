@@ -34,6 +34,13 @@ void List::clear()
     this->Head = nullptr;
 }
 
+void List::delete_after_nd(Node* nd)
+{
+    Node* tmp = nd->pNext->pNext;
+    delete nd->pNext;
+    nd->pNext = tmp;
+}
+
 void List::Sort()
 {
     Node* a, * b, * p, * h = nullptr;
@@ -58,6 +65,15 @@ void List::Sort()
     }
     if (h != nullptr)
         Head = h;
+
+    for (Node *i = Head, *j = Head->pNext; i != nullptr && j != nullptr; i = i->pNext, j = j->pNext)
+    {
+        if (i->pow == j->pow)
+        {
+            i->factor += j->factor;
+            delete_after_nd(i);
+        }
+    }
 }
 
 void List::push_back(double factor, size_t pow)
@@ -65,13 +81,13 @@ void List::push_back(double factor, size_t pow)
     if (Head == nullptr)
     {
         Head = new Node(factor, pow);
-    }     
+    }
     else
     {
         Node* tmp = Head;
 
         while (tmp->pNext != nullptr)
-        {  
+        {
             tmp = tmp->pNext;
         }
 
@@ -241,7 +257,7 @@ Polinoms Polinoms::operator*(const double alpha)
     Polinoms res;
     for (Node* i = Head; i != nullptr; i = i->pNext)
     {
-            res.push_back(i->factor * alpha, i->pow);
+        res.push_back(i->factor * alpha, i->pow);
     }
 
     return res;
@@ -270,7 +286,7 @@ Polinoms Polinoms::operator+(const Polinoms& pln)
         {
             res.push_back(i->factor, i->pow);
             i = i->pNext;
-        } 
+        }
     }
     while (i != nullptr)
     {
@@ -345,19 +361,17 @@ double convert(std::string num)
         i++;
     }
 
-    int power = 1;
     for (; num[i] != ',' && i < num.size(); i++)     //integer part
     {
-        if (num[i] >= '0' && int(num[i]) <= '9')
+        if (num[i] >= '0' && num[i] <= '9')
         {
-            result *= power;
+            result *= 10;
             result += (double(num[i]) - 48);
-            power *= 10;
         }
         else
             throw std::exception("uncorrect koef");
     }
-    power = 10;
+    int power = 10;
     i++;
     for (; i < num.size(); i++)    //tail
     {
