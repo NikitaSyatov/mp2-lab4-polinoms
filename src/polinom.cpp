@@ -133,6 +133,9 @@ Polinoms::Polinoms(const std::string& pol) : List()
         }
     }
 
+    if (this->Head == nullptr)
+        this->Head = new Node(0, 0);
+
     this->Sort();
 }
 
@@ -212,7 +215,8 @@ void Polinoms::Parse(std::string pol, int start, int end)
         i++;
     }
 
-    this->push_back(koef, power);
+    if (koef != 0)
+        this->push_back(koef, power);
 }
 
 bool Polinoms::operator==(const Polinoms& pln)
